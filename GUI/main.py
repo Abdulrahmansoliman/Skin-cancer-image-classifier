@@ -4,15 +4,30 @@ from tensorflow import keras
 from keras.models import Sequential, load_model
 import cv2
 import numpy as np
+import io
+import os
+from google.oauth2 import service_account
+import pandas as pd
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 
 
 # Load the saved model
 model_path = r'E:\College\Junior\Spring\AI\Projec\models\model.h5'
 model = load_model(model_path)
 
+# Load the dataset as a Pandas DataFrame
+df = pd.read_csv(
+    'C:/Users/lap/Abdulrahman Soliman Dropbox/Abdulrahman Soliman/My PC (DESKTOP-539QASU)/Downloads/hmnist_64_64_RGB.csv')
+
+
+X = df.drop("label", axis=1).values
+label = df["label"].values
+
 # Compute the mean and standard deviation of the training data
-X_mean = np.mean(X_train_orig)
-X_std = np.std(X_train_orig)
+X_mean = np.mean(X)
+X_std = np.std(X)
+
 
 # Create a new Flask app instance
 app = Flask(__name__)
@@ -22,12 +37,10 @@ app = Flask(__name__)
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    # Get the uploaded image file
-    file = request.files['image']
+    
+    image_path = 'C:/Users/lap/Abdulrahman Soliman Dropbox/Abdulrahman Soliman/My PC (DESKTOP-539QASU)/Downloads/th.jpg'
+    image = cv2.imread(image_path)
 
-    # Read the image file into a NumPy array
-    image = cv2.imdecode(np.fromstring(
-        file.read(), np.uint8), cv2.IMREAD_COLOR)
 
     # Convert the image from BGR to RGB format
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
