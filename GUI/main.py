@@ -10,6 +10,9 @@ from google.oauth2 import service_account
 import pandas as pd
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+import base64
+from PIL import Image
+from io import BytesIO
 
 
 # Load the saved model
@@ -29,13 +32,18 @@ app = Flask(__name__)
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    
-    image_path = 'C:/Users/lap/Abdulrahman Soliman Dropbox/Abdulrahman Soliman/My PC (DESKTOP-539QASU)/Downloads/th.jpg'
-    image = cv2.imread(image_path)
+    # Get the image data from the request payload
+    image_data = request.json['image']
 
+    # Decode the base64 image
+    image_data = image_data.split(',')[1]
+    image_bytes = base64.b64decode(image_data)
 
-    # Convert the image from BGR to RGB format
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    # Load the image using Pillow
+    image_cv = Image.open(BytesIO(image_bytes))
+
+    # Convert the image to OpenCV format
+    image = cv2.cvtColor(np.array(image_cv), cv2.COLOR_RGB2BGR)
 
     # Preprocess the image data
     image = cv2.resize(image, (64, 64))
@@ -66,6 +74,7 @@ def predict():
     response = {
         'predicted_label': predicted_label
     }
+    print(response)
 
     return jsonify(response)
 
