@@ -16,17 +16,9 @@ from googleapiclient.errors import HttpError
 model_path = r'E:\College\Junior\Spring\AI\Projec\models\model.h5'
 model = load_model(model_path)
 
-# Load the dataset as a Pandas DataFrame
-df = pd.read_csv(
-    'C:/Users/lap/Abdulrahman Soliman Dropbox/Abdulrahman Soliman/My PC (DESKTOP-539QASU)/Downloads/hmnist_64_64_RGB.csv')
-
-
-X = df.drop("label", axis=1).values
-label = df["label"].values
-
 # Compute the mean and standard deviation of the training data
-X_mean = np.mean(X)
-X_std = np.std(X)
+X_mean = 159.8194591494919
+X_std = 46.388207881604245
 
 
 # Create a new Flask app instance
