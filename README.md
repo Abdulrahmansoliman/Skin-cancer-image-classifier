@@ -41,13 +41,19 @@ Copy
 
 ### The predicted label will be one of the following:
 
-Actinic keratosis
-Basal cell carcinoma
-Benign keratosis
-Dermatofibroma
-Melanoma
-Nevus
-Squamous cell carcinoma
+0- Actinic keratosis
+    
+1- Basal cell carcinoma
+    
+2- Benign keratosis
+    
+3- Dermatofibroma
+    
+4- Melanoma
+    
+5- Nevus
+    
+6- Squamous cell carcinoma
  
 ### Dataset
   
