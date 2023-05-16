@@ -13,12 +13,19 @@ export default async function handler(req: NextRequest) {
     return new Response("Missing image", { status: 400 });
   }
   if (req.method === "POST") {
+    const result = await fetch(
+      "http://127.0.0.1:5000/predict",
+      {
+        method: "POST",
+        body: JSON.stringify({ image }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+    const data = await result.json();
 
-    const result = {
-      result: 'You have Melanoma',
-    } 
-
-    return new Response(JSON.stringify(result ));
+    return new Response(JSON.stringify(data));
+    
   } else {
     return new Response("Method Not Allowed", { status: 405 });
   }

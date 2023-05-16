@@ -84,11 +84,11 @@ const UploadModal = ({
               body: JSON.stringify(data),
             }).then(async (res) => {
               if (res.status === 200) {
-                const { result } = await res.json();
+                const { predicted_label } = await res.json();
                 // router.push(`/p/${key}`);
                 router.push({
                   pathname: '/result',
-                  query: { input: data.image, result: result}
+                  query: { input: data.image, result: predicted_label}
               }, '/result')
               } else {
                 setSaving(false);
