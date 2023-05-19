@@ -6,7 +6,7 @@ This is a web application built with Python Flask as the backend and Next.js as 
 The backend of this application is built with Flask, a Python web framework. It utilizes a pre-trained Keras model to classify skin lesion images into different categories. The backend provides a REST API endpoint that accepts an image file and returns a predicted class label.
 
 
-# Frontend Description
+## Frontend Description
 The frontend of this application is built using Next.js, a React framework for server-side rendering. It provides users with an intuitive interface where they can select the model they want to use and upload an image. Once the image is uploaded, the frontend sends a request to the backend API and displays the predicted class label to the user.
 
 ## Backend Setup
