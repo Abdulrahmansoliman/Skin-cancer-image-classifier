@@ -8,7 +8,7 @@ export const config = {
   }
 }
 export default async function handler(req: NextRequest) {
-  const { image } = await req.json();
+  const { image, method } = await req.json();
   if (!image) {
     return new Response("Missing image", { status: 400 });
   }
@@ -17,7 +17,7 @@ export default async function handler(req: NextRequest) {
       "http://127.0.0.1:5000/predict",
       {
         method: "POST",
-        body: JSON.stringify({ image }),
+        body: JSON.stringify({ image, method }),
         headers: {
           "Content-Type": "application/json",
         },

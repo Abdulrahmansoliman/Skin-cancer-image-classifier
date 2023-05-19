@@ -15,9 +15,7 @@ from PIL import Image
 from io import BytesIO
 
 
-# Load the saved model
-model_path = r'E:\College\Junior\Spring\AI\Projec\models\model.h5'
-model = load_model(model_path)
+
 
 # Compute the mean and standard deviation of the training data
 X_mean = 159.8194591494919
@@ -34,6 +32,17 @@ app = Flask(__name__)
 def predict():
     # Get the image data from the request payload
     image_data = request.json['image']
+    method = request.json['method']
+
+    # Load the saved model
+    if(method == 'dense'):
+        model_path = r'.\models\DenseNetFT.h5'
+    elif(method == 'vgg'):
+        model_path = r'.\models\VGG16FT.h5'
+    else:
+        model_path = r'.\models\model.h5'
+        
+    model = load_model(model_path)
 
     # Decode the base64 image
     image_data = image_data.split(',')[1]
@@ -46,35 +55,45 @@ def predict():
     image = cv2.cvtColor(np.array(image_cv), cv2.COLOR_RGB2BGR)
 
     # Preprocess the image data
-    image = cv2.resize(image, (64, 64))
+    if(method == 'dense' or method == 'vgg'):
+        image = cv2.resize(image, (192, 256))
+    else:
+        image = cv2.resize(image, (64, 64))
     image = np.array(image)
     image = (image - X_mean) / X_std
-    image = image.reshape(1, 64, 64, 3)
+    if(method == 'dense' or method == 'vgg'):
+        image = image.reshape(1, 192, 256, 3)
+    else:
+        image = image.reshape(1, 64, 64, 3)
 
     # Use the model to make predictions on the image data
     prediction = model.predict(image)
     predicted_class = np.argmax(prediction)
-
-    # Return the predicted class label as JSON
-    if predicted_class == 0:
-        predicted_label = "Actinic keratosis"
-    elif predicted_class == 1:
-        predicted_label = "Basal cell carcinoma"
-    elif predicted_class == 2:
-        predicted_label = "Benign keratosis"
-    elif predicted_class == 3:
-        predicted_label = "Dermatofibroma"
-    elif predicted_class == 4:
-        predicted_label = "Melanoma"
-    elif predicted_class == 5:
-        predicted_label = "Nevus"
+    
+    if(method == 'dense' or method == 'vgg'):
+        classes = ['Actinic keratoses','basal cell carcinoma',
+               'benign keratosis-like lesions','dermatofibroma',
+               'melanocytic nevi','vascular lesions','melanoma']
+        predicted_label = classes[predicted_class]
     else:
-        predicted_label = "Squamous cell carcinoma"
+        if predicted_class == 0:
+            predicted_label = "Actinic keratosis"
+        elif predicted_class == 1:
+            predicted_label = "Basal cell carcinoma"
+        elif predicted_class == 2:
+            predicted_label = "Benign keratosis"
+        elif predicted_class == 3:
+            predicted_label = "Dermatofibroma"
+        elif predicted_class == 4:
+            predicted_label = "Melanoma"
+        elif predicted_class == 5:
+            predicted_label = "Nevus"
+        else:
+            predicted_label = "Squamous cell carcinoma"
 
     response = {
         'predicted_label': predicted_label
     }
-    print(response)
 
     return jsonify(response)
 
