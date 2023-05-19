@@ -29,7 +29,7 @@ The backend should now be running on the specified host and port.
 
 ## Frontend Setup
 
-1. Install Node.js: Download and install Node.js from the [official Node.js website](https://nodejs.org). We Recommend using >= v18.12
+1. Install Node.js: Download and install Node.js from the [official Node.js website](https://nodejs.org). We recommend using Node.js version >= 18.12.
 2. Navigate to the `frontend` folder using the terminal:
 ``` 
 cd ../frontend
