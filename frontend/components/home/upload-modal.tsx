@@ -23,8 +23,10 @@ const UploadModal = ({
   const router = useRouter();
   const [data, setData] = useState<{
     image: string | null;
+    method: "baseline" | "dense" | "vgg";
   }>({
     image: null,
+    method: "baseline",
   });
   const [fileSizeTooBig, setFileSizeTooBig] = useState(false);
 
@@ -97,6 +99,18 @@ const UploadModal = ({
             });
           }}
         >
+          <div>
+            <label
+              htmlFor="method"
+            >
+              <p className="block text-sm font-medium text-gray-700">Model</p>
+            </label>
+          <select className="rounded-md mt-2 w-full" id="method" value={data.method} onChange={(e) => setData((prev) => ({ ...prev, method: e.target.value as "baseline" | "dense" | "vgg" }))} >
+            <option value="baseline">Baseline</option>
+            <option value="dense">DenseNet</option>
+            <option value="vgg">VGG16</option>
+          </select>
+          </div>
           <div>
             <div className="flex items-center justify-between">
               <p className="block text-sm font-medium text-gray-700">Photo</p>
