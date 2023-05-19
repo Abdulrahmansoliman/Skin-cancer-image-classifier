@@ -1,64 +1,79 @@
-# Skin-cancer-image-classifier
+# Skin Cancer Image Classifier
+
+This is a web application built with Python Flask as the backend and Next.js as the frontend.
+
+## Backend Description
+The backend of this application is built with Flask, a Python web framework. It utilizes a pre-trained Keras model to classify skin lesion images into different categories. The backend provides a REST API endpoint that accepts an image file and returns a predicted class label.
 
 
-This is a Flask app that uses a pre-trained Keras model to classify skin lesion images into different categories. The app provides a REST API endpoint that accepts an image file and returns a predicted class label.
+# Frontend Description
+The frontend of this application is built using Next.js, a React framework for server-side rendering. It provides users with an intuitive interface where they can select the model they want to use and upload an image. Once the image is uploaded, the frontend sends a request to the backend API and displays the predicted class label to the user.
 
-### Installation
+## Backend Setup
 
-Clone the repository or download the code files to your local machine.
-Install the required dependencies in GUI/requirements.txt using pip:
-
+1. Install Python: Download and install Python from the [official Python website](https://www.python.org).
+2. Navigate to the `GUI` folder using the terminal:
+``` 
+cd GUI
 ```
-Update the model_path variable in app.py with the path to your saved Keras model file.
-
-### Usage
-
-Open a terminal or command prompt and navigate to the directory where app.py is saved.
-Run the following command to start the Flask app:
-python app.py
-
-or just run the main.py file
+3. Install Dependencies: Install the required packages listed in `requirements.txt`:
 ```
-The app should now be running on your local machine. You can send a POST request to the /predict endpoint to get a prediction for your image. You can use tools like Postman or cURL to send the request.
-The app will return a JSON response with the predicted class label.
-API Endpoint
-The app provides a single API endpoint at /predict. You can send a POST request to this endpoint with an image file in the request body. The app will use the pre-trained Keras model to predict the class label for the image and return a JSON response with the predicted label.
+pip install -r requirements.txt
+```
+4. Run the Backend: Start the Flask backend:
+```
+python main.py
+```
 
-### Request
+The backend should now be running on the specified host and port.
 
-POST /predict
-Content-Type: multipart/form-data
-Request Body
-The request body should contain a single image file in JPEG or PNG format.
+## Frontend Setup
 
-### Response
-The app will return a JSON response with a predicted label for the image. The response will have the following format:
+1. Install Node.js: Download and install Node.js from the [official Node.js website](https://nodejs.org). We Recommend using >= v18.12
+2. Navigate to the `frontend` folder using the terminal:
+``` 
+cd ../frontend
+```
+3. Install Dependencies: Install the required packages:
+```
+npm install
+```
+4. Run the Frontend: Start the Next.js development server:
+```
+npm run dev
+```
 
-Copy
-{
-    "predicted_label": "<predicted label>"
-}
+The website should now be accessible at `localhost:3000`.
 
-### The predicted label will be one of the following:
+You can also use the backend only by sending a request to `http://127.0.0.1:5000`.
 
-0- Actinic keratosis
-    
-1- Basal cell carcinoma
-    
-2- Benign keratosis
-    
-3- Dermatofibroma
-    
-4- Melanoma
-    
-5- Nevus
-    
-6- Squamous cell carcinoma
- 
+
+### Predicted Labels
+
+The predicted label will be one of the following:
+
+0. Actinic Keratosis
+1. Basal Cell Carcinoma
+2. Benign Keratosis
+3. Dermatofibroma
+4. Melanocytic Nevi
+5. Vascular Lesions
+6. Melanoma
+7. Nevus
+8. Squamous Cell Carcinoma
+
+
 ### Dataset
-  
-The dataset used in this project can be found at the following link: https://drive.google.com/file/d/1PzFAhIJZbW_ApsxYNeCHwY2MY1gBRN44/view?usp=share_link
+
+The dataset used in this project can be found at the following link: [Dataset Link](https://drive.google.com/file/d/1PzFAhIJZbW_ApsxYNeCHwY2MY1gBRN44/view?usp=share_link)
 
 ### Credits
 
- The pre-trained Keras model used in this app was trained on the ISIC 2018 Skin Lesion Classification dataset. The app was developed by
+The pre-trained Keras model used in this app was trained on the ISIC 2018 Skin Lesion Classification dataset. 
+
+The app was developed by:
+1. [Mostafa Khalil](https://github.com/MostafaWahiep)
+2. [Mohamed Abdelmaksoud](https://github.com/helmy162)
+3. [Nour Hammad](https://github.com/nourhammmad)
+4. [Abdulrahman Soliman](https://github.com/Abdulrahmansoliman)
+5. [Abdulrahman Hassan](https://github.com/AbdulrahmanHassan01)
