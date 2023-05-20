@@ -70,26 +70,11 @@ def predict():
     prediction = model.predict(image)
     predicted_class = np.argmax(prediction)
     
-    if(method == 'dense' or method == 'vgg'):
-        classes = ['Actinic Keratoses','Basal Cell Carcinoma',
+    classes = ['Actinic Keratoses','Basal Cell Carcinoma',
                'Benign Keratosis','Dermatofibroma',
                'Melanocytic nevi','Vascular Lesions','Melanoma']
-        predicted_label = classes[predicted_class]
-    else:
-        if predicted_class == 0:
-            predicted_label = "Actinic Keratosis"
-        elif predicted_class == 1:
-            predicted_label = "Basal Cell Carcinoma"
-        elif predicted_class == 2:
-            predicted_label = "Benign Keratosis"
-        elif predicted_class == 3:
-            predicted_label = "Dermatofibroma"
-        elif predicted_class == 4:
-            predicted_label = "Melanoma"
-        elif predicted_class == 5:
-            predicted_label = "Nevus"
-        else:
-            predicted_label = "Squamous Cell Carcinoma"
+               
+    predicted_label = classes[predicted_class]
 
     response = {
         'predicted_label': predicted_label
