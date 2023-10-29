@@ -1,0 +1,19 @@
+.
+Summary of AI Skin Cancer Detection Service
+
+This service provides a seamless way for tech-interested users to train and integrate AI skin cancer detection models. Users can simply upload their models and datasets, and the service will automatically train, integrate, and validate the models. This ensures that the models are always up-to-date and efficient.
+
+How it works
+
+The service has two sides:
+
+User side: Users can upload images to the model to get predictions.
+Validator side: When images and data are uploaded, the validator checks the data for quality. After 100 uploads, the validator decides whether or not to approve the data. If the data is approved, it is automatically added to the dataset and the AI model is updated.
+Benefits
+
+Dynamic and automatic model improvement: The service automatically updates the model based on new data, making it more accurate over time.
+Easy to use: Users can simply upload their models and datasets, and the service takes care of the rest.
+Scalable: The service can scale to meet the needs of businesses of all sizes.
+Example use case
+
+A dermatologist could use this service to develop and maintain an AI-powered skin cancer detection system. The dermatologist could upload images of skin lesions and the corresponding diagnoses to the service. The service would then train a model to detect skin cancer. The dermatologist could then use the model to diagnose new patients more quickly and accurately.
