@@ -75,5 +75,5 @@ The app was developed by:
 1. [Mostafa Khalil](https://github.com/MostafaWahiep)
 2. [Mohamed Abdelmaksoud](https://github.com/helmy162)
 3. [Nour Hammad](https://github.com/nourhammmad)
-4. [Abdulrahman Soliman](https://github.com/Abdulrahmansoliman)
+4. [Abdelrahman Mohamed](https://github.com/Abdulrahmansoliman)
 5. [Abdulrahman Hassan](https://github.com/AbdulrahmanHassan01)
